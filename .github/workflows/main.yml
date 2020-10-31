@@ -26,6 +26,7 @@ jobs:
 
       - name: Create packages
         run: |
+          apt-get install -y libgl1-mesa-dev
           conan create . qt/5.15.0@vectrom/stable -s build_type=Release -o qt:qttools=True
           conan create . qt/5.15.0@vectrom/stable -s build_type=Debug -o qt:qttools=True
 
