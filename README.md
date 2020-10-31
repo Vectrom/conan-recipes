@@ -1,4 +1,4 @@
-# conan-recipes
-This repository contains recipes for Conan package manager. Each recipe has its own branch. 
+# Qt 5.15.0
+This repository contains recipe for Qt 5.15.0 Conan package.
 
-Branches includes a CI/CD system that will build automatically the Conan packages and upload to [Artifactory](https://artifactory.plociennik.net).
+Recipe is taken from [bincrafters](https://github.com/bincrafters/conan-qt/tree/stable/5.15.0), but it contains also additional changes introduced by me.
