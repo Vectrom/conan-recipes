@@ -43,6 +43,11 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Install linux packages
+        run: |
+          sudo apt-get install -y libgl1-mesa-dev
+          sudo apt-get install -y xorg-dev
+
       - name: Install and configure Conan
         env:
           ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
@@ -53,7 +58,6 @@ jobs:
 
       - name: Create packages
         run: |
-          sudo apt-get install -y libgl1-mesa-dev
           conan create . qt/5.15.0@vectrom/stable -s build_type=Release -o qt:qttools=True
           conan create . qt/5.15.0@vectrom/stable -s build_type=Debug -o qt:qttools=True
 
