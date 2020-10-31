@@ -94,25 +94,25 @@ class QtConan(ConanFile):
         "commercial": False,
         "opengl": "desktop",
         "with_vulkan": False,
-        "openssl": True,
-        "with_pcre2": True,
-        "with_glib": True,
+        "openssl": False,
+        "with_pcre2": False,
+        "with_glib": False,
         # "with_libiconv": True,
         "with_doubleconversion": True,
-        "with_freetype": True,
-        "with_fontconfig": True,
-        "with_icu": True,
-        "with_harfbuzz": True,
-        "with_libjpeg": True,
+        "with_freetype": False,
+        "with_fontconfig": False,
+        "with_icu": False,
+        "with_harfbuzz": False,
+        "with_libjpeg": False,
         "with_libpng": True,
-        "with_sqlite3": True,
-        "with_mysql": True,
-        "with_pq": True,
-        "with_odbc": True,
-        "with_sdl2": True,
+        "with_sqlite3": False,
+        "with_mysql": False,
+        "with_pq": False,
+        "with_odbc": False,
+        "with_sdl2": False,
         "with_libalsa": False,
-        "with_openal": True,
-        "with_zstd": True,
+        "with_openal": False,
+        "with_zstd": False,
 
         "GUI": True,
         "widgets": True,
@@ -673,6 +673,22 @@ class QtConan(ConanFile):
 
     def package_info(self):
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
+
+        self.cpp_info.libs = tools.collect_libs(self)
+
+        # "Qt5Bootstrap.lib" contains symbols that are also in "Qt5Core.lib",
+        # removing it so linker succeed.
+        if 'Qt5Bootstrap' in self.cpp_info.libs:
+            self.cpp_info.libs.remove('Qt5Bootstrap')
+
+        # Add top level include directory, so code compile if someone uses
+        # includes with prefixes (e.g. "#include <QtCore/QString>")
+        self.cpp_info.includedirs = ['include']
+
+        # Add all Qt module directories (QtCore, QtGui, QtWidgets and so on), so prefix
+        # can be omited in includes (e.g. "#include <QtCore/QString>" => "#include <QString>")
+        fu = ['include/' + f.name for f in os.scandir('include') if f.is_dir()]
+        self.cpp_info.includedirs.extend(fu)
 
     @staticmethod
     def _remove_duplicate(l):
