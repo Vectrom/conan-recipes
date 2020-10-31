@@ -47,6 +47,7 @@ jobs:
         run: |
           sudo apt-get install -y libgl1-mesa-dev
           sudo apt-get install -y xorg-dev
+          sudo apt-get install -y libxcb-render-util0-dev
 
       - name: Install and configure Conan
         env:
