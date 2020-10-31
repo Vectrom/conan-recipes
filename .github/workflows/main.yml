@@ -11,6 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Configure Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
       - name: Install and configure Conan
         env:
           ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
@@ -33,11 +38,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Configure Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
       - name: Install and configure Conan
         env:
           ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
         run: |
-          python3 -m pip install conan
+          python -m pip install conan
           conan remote add vectrom https://artifactory.plociennik.net/artifactory/api/conan/conan
           conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
 
@@ -54,6 +64,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Configure Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
       - name: Install and configure Conan
         env:
