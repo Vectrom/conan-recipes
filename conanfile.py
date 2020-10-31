@@ -19,7 +19,7 @@ class LibpngConan(ConanFile):
     _source_subfolder = "source_subfolder"
 
     def requirements(self):
-        self.requires("zlib/1.2.11")
+        self.requires("zlib/1.2.11@vectrom/stable")
 
     def config_options(self):
         if self.settings.os == "Windows":
