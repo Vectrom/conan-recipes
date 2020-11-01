@@ -676,6 +676,9 @@ class QtConan(ConanFile):
             else:
                 self.info.settings.compiler.runtime = "MT/MTd"
 
+    def package_info(self):
+        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
+        
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Add top level include directory, so code compile if someone uses
@@ -698,9 +701,6 @@ class QtConan(ConanFile):
                 self.cpp_info.frameworks.extend(["IOKit"])    # 'libQt5Core.a' require '_IORegistryEntryCreateCFProperty', '_IOServiceGetMatchingService' and much more which are in 'IOKit' framework
                 self.cpp_info.frameworks.extend(["Cocoa"])    # 'libQt5Core.a' require '_OBJC_CLASS_$_NSApplication' and more, which are in 'Cocoa' framework
                 self.cpp_info.frameworks.extend(["Security"]) # 'libQt5Core.a' require '_SecRequirementCreateWithString' and more, which are in 'Security' framework
-
-    def package_info(self):
-        self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
 
     @staticmethod
     def _remove_duplicate(l):
