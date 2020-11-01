@@ -95,25 +95,25 @@ class QtConan(ConanFile):
         "commercial": False,
         "opengl": "desktop",
         "with_vulkan": False,
-        "openssl": True,
-        "with_pcre2": True,
-        "with_glib": True,
+        "openssl": False,
+        "with_pcre2": False,
+        "with_glib": False,
         # "with_libiconv": True,
         "with_doubleconversion": True,
-        "with_freetype": True,
-        "with_fontconfig": True,
-        "with_icu": True,
-        "with_harfbuzz": True,
-        "with_libjpeg": True,
+        "with_freetype": False,
+        "with_fontconfig": False,
+        "with_icu": False,
+        "with_harfbuzz": False,
+        "with_libjpeg": False,
         "with_libpng": True,
-        "with_sqlite3": True,
-        "with_mysql": True,
-        "with_pq": True,
-        "with_odbc": True,
-        "with_sdl2": True,
+        "with_sqlite3": False,
+        "with_mysql": False,
+        "with_pq": False,
+        "with_odbc": False,
+        "with_sdl2": False,
         "with_libalsa": False,
-        "with_openal": True,
-        "with_zstd": True,
+        "with_openal": False,
+        "with_zstd": False,
 
         "GUI": True,
         "widgets": True,
@@ -125,7 +125,7 @@ class QtConan(ConanFile):
         "multiconfiguration": False,
     }, **{module: False for module in _submodules if module != 'qtbase'}
     )
-    requires = "zlib/1.2.11"
+    requires = "zlib/1.2.11@vectrom/stable"
     short_paths = True
 
     def build_requirements(self):
@@ -293,7 +293,7 @@ class QtConan(ConanFile):
         # if self.options.with_libiconv:
         #     self.requires("libiconv/1.16")
         if self.options.with_doubleconversion and not self.options.multiconfiguration:
-            self.requires("double-conversion/3.1.5")
+            self.requires("double-conversion/3.1.5@vectrom/stable")
         if self.options.with_freetype and not self.options.multiconfiguration:
             self.requires("freetype/2.10.2")
         if self.options.with_fontconfig:
@@ -305,7 +305,7 @@ class QtConan(ConanFile):
         if self.options.with_libjpeg and not self.options.multiconfiguration:
             self.requires("libjpeg/9d")
         if self.options.with_libpng and not self.options.multiconfiguration:
-            self.requires("libpng/1.6.37")
+            self.requires("libpng/1.6.37@vectrom/stable")
         if self.options.with_sqlite3 and not self.options.multiconfiguration:
             self.requires("sqlite3/3.31.0")
             self.options["sqlite3"].enable_column_metadata = True
@@ -678,7 +678,7 @@ class QtConan(ConanFile):
 
     def package_info(self):
         self.env_info.CMAKE_PREFIX_PATH.append(self.package_folder)
-        
+
         self.cpp_info.libs = tools.collect_libs(self)
 
         # Add top level include directory, so code compile if someone uses
