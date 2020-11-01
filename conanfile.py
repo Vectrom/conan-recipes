@@ -101,7 +101,7 @@ class QtConan(ConanFile):
         # "with_libiconv": True,
         "with_doubleconversion": True,
         "with_freetype": False,
-        "with_fontconfig": False,
+        "with_fontconfig": True,
         "with_icu": False,
         "with_harfbuzz": False,
         "with_libjpeg": False,
@@ -297,7 +297,7 @@ class QtConan(ConanFile):
         if self.options.with_freetype and not self.options.multiconfiguration:
             self.requires("freetype/2.10.2")
         if self.options.with_fontconfig:
-            self.requires("fontconfig/2.13.91")
+            self.requires("fontconfig/2.13.91@vectrom/stable")
         if self.options.with_icu:
             self.requires("icu/64.2")
         if self.options.with_harfbuzz and not self.options.multiconfiguration:
