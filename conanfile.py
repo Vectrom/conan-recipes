@@ -100,7 +100,7 @@ class QtConan(ConanFile):
         "with_glib": False,
         # "with_libiconv": True,
         "with_doubleconversion": True,
-        "with_freetype": False,
+        "with_freetype": True,
         "with_fontconfig": True,
         "with_icu": False,
         "with_harfbuzz": False,
@@ -204,6 +204,7 @@ class QtConan(ConanFile):
             raise ConanInvalidConfiguration("This recipe needs at least conan 1.20.0, please upgrade.")
         if self.settings.os != 'Linux':
         #     self.options.with_libiconv = False
+            self.options.with_freetype = False
             self.options.with_fontconfig = False
         if self.settings.compiler == "gcc" and Version(self.settings.compiler.version.value) < "5.3":
             self.options.with_mysql = False
@@ -297,7 +298,7 @@ class QtConan(ConanFile):
         if self.options.with_freetype and not self.options.multiconfiguration:
             self.requires("freetype/2.10.2")
         if self.options.with_fontconfig:
-            self.requires("fontconfig/2.13.91@vectrom/stable")
+            self.requires("fontconfig/2.13.91")
         if self.options.with_icu:
             self.requires("icu/64.2")
         if self.options.with_harfbuzz and not self.options.multiconfiguration:
