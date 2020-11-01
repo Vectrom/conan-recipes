@@ -270,7 +270,7 @@ class QtConan(ConanFile):
                 self.options.with_fontconfig = True
 
         if self.settings.os != "Linux":
-            self.options.qt_tools = False #it is only to test
+            self.options.qttools = False # it is only to test
 
         assert self.version == self._submodules['qtbase']['branch']
 
