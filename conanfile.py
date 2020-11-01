@@ -110,8 +110,7 @@ class PopplerConan(ConanFile):
             # FIXME: missing gobject_introspection recipe
             raise ConanInvalidConfiguration("gobject_introspection is not (yet) available on cci")
         if self.options.with_qt:
-            # FIXME: missing qt recipe
-            raise ConanInvalidConfiguration("qt is not (yet) available on cii")
+            self.requires("qt/5.15.1@vectrom/stable")
         if self.options.get_safe("with_gtk"):
             # FIXME: missing gtk recipe
             raise ConanInvalidConfiguration("gtk is not (yet) available on cii")
