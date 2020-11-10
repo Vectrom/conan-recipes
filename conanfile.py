@@ -306,7 +306,7 @@ class QtConan(ConanFile):
         if self.options.with_libjpeg and not self.options.multiconfiguration:
             self.requires("libjpeg/9d")
         if self.options.with_libpng and not self.options.multiconfiguration:
-            self.requires("libpng/1.6.37")
+            self.requires("libpng/1.6.37@vectrom/stable")
         if self.options.with_sqlite3 and not self.options.multiconfiguration:
             self.requires("sqlite3/3.31.0")
             self.options["sqlite3"].enable_column_metadata = True
