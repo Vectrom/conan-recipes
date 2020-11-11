@@ -75,7 +75,7 @@ jobs:
           conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . freetype/2.10.2@vectrom/stable -s build_type=Release
-          conan create . freetype/2.10.2@vectrom/stable -s build_type=Debug
+          conan create . freetype/2.10.2@vectrom/stable -s build_type=Release --build missing
+          conan create . freetype/2.10.2@vectrom/stable -s build_type=Debug --build missing
       - name: Upload
         run: conan upload freetype/2.10.2@vectrom/stable -r vectrom --all
