@@ -54,7 +54,7 @@ class LibtiffConan(ConanFile):
 
     def requirements(self):
         if self.options.zlib:
-            self.requires("zlib/1.2.11")
+            self.requires("zlib/1.2.11@vectrom/stable")
         if self.options.lzma:
             self.requires("xz_utils/5.2.4")
         if self.options.jpeg:
