@@ -137,7 +137,7 @@ class PopplerConan(ConanFile):
 
     def source(self):
         self.run("git clone https://github.com/Vectrom/poppler.git")
-        os.rename("poppler-{}".format(self.version), self._source_subfolder)
+        os.rename("poppler", self._source_subfolder)
 
     @property
     def _dct_decoder(self):
