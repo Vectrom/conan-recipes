@@ -1,0 +1,100 @@
+name: Build and upload package
+
+on:
+  push:
+    branches: '*/stable/*'
+
+jobs:
+  Win:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install and configure Conan
+        env:
+          ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
+        run: |
+          python -m pip install conan
+          conan remote add vectrom https://artifactory.plociennik.net/artifactory/api/conan/conan
+          conan user -p "$env:ARTIFACTORY_API_KEY" -r vectrom github
+      - name: Create packages
+        run: |
+          conan create . poppler/20.11.0@vectrom/stable -s build_type=Release -o poppler:with_qt=True -o qt:qttools=True -o poppler:shared=True 
+          conan create . poppler/20.11.0@vectrom/stable -s build_type=Debug -o poppler:with_qt=True -o qt:qttools=True -o poppler:shared=True 
+      - name: Upload
+        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all
+
+  Lnx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install linux packages
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade
+          sudo apt-get install -y libgl1-mesa-dev
+          sudo apt-get install -y xorg-dev
+          sudo apt-get install -y libxcb-render-util0-dev
+          sudo apt-get install -y libxcb-xkb-dev
+          sudo apt-get install -y libxcb-icccm4-dev
+          sudo apt-get install -y libxcb-image0-dev
+          sudo apt-get install -y libxcb-keysyms1-dev
+          sudo apt-get install -y libxcb-randr0-dev
+          sudo apt-get install -y libxcb-shape0-dev
+          sudo apt-get install -y libxcb-sync-dev
+          sudo apt-get install -y libxcb-xfixes0-dev
+          sudo apt-get install -y libxcb-xinerama0-dev
+          sudo apt-get install -y xkb-data
+
+
+      - name: Install and configure Conan
+        env:
+          ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
+        run: |
+          python -m pip install conan
+          conan remote add vectrom https://artifactory.plociennik.net/artifactory/api/conan/conan
+          conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
+      - name: Create packages
+        run: |
+          conan create . poppler/20.11.0@vectrom/stable -s build_type=Release -o poppler:with_qt=True -o qt:qttools=True -o poppler:shared=True 
+          conan create . poppler/20.11.0@vectrom/stable -s build_type=Debug -o poppler:with_qt=True -o qt:qttools=True -o poppler:shared=True 
+      - name: Upload
+        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all
+
+  Mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install and configure Conan
+        env:
+          ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
+        run: |
+          python -m pip install conan
+          conan remote add vectrom https://artifactory.plociennik.net/artifactory/api/conan/conan
+          conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
+      - name: Create packages
+        run: |
+          conan create . poppler/20.11.0@vectrom/stable -s build_type=Release -o poppler:with_qt=True -o qt:qttools=True --build missing -o poppler:shared=True 
+          conan create . poppler/20.11.0@vectrom/stable -s build_type=Debug -o poppler:with_qt=True -o qt:qttools=True --build missing -o poppler:shared=True 
+      - name: Upload
+        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all
