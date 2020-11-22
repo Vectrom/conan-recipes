@@ -101,7 +101,7 @@ class PopplerConan(ConanFile):
         if self.options.get_safe("with_libiconv"):
             self.requires("libiconv/1.16")
         if self.options.fontconfiguration == "fontconfig":
-            self.require("fontconfig/2.13.91")
+            self.requires("fontconfig/2.13.91")
         if self.options.with_cairo:
             # FIXME: missing cairo recipe
             raise ConanInvalidConfiguration("cairo is not (yet) available on cci")
