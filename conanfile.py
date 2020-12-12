@@ -97,7 +97,7 @@ class PopplerConan(ConanFile):
 
     def requirements(self):
         self.requires("poppler-data/0.4.9")
-        self.requires("freetype/2.10.4")
+        self.requires("freetype/2.10.2")
         if self.options.get_safe("with_libiconv"):
             self.requires("libiconv/1.16")
         if self.options.fontconfiguration == "fontconfig":
