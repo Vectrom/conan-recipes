@@ -26,7 +26,7 @@ jobs:
           conan create . -s build_type=Release 
           conan create . -s build_type=Debug  
       - name: Upload
-        run: conan upload "boost*" -r vectrom --all
+        run: conan upload boost/1.74.0 -r vectrom --all
 
   Lnx:
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
           conan create . -s build_type=Release  
           conan create . -s build_type=Debug  
       - name: Upload
-        run: conan upload "boost*" -r vectrom --all
+        run: conan upload boost/1.74.0 -r vectrom --all
 
   Mac:
     runs-on: macos-latest
@@ -95,4 +95,4 @@ jobs:
           conan create . -s build_type=Release  --build missing 
           conan create . -s build_type=Debug  --build missing 
       - name: Upload
-        run: conan upload "boost*" -r vectrom --all
+        run: conan upload boost/1.74.0 -r vectrom --all
