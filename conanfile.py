@@ -30,7 +30,6 @@ class BoostConan(ConanFile):
     description = "Boost provides free peer-reviewed portable C++ source libraries"
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://www.boost.org"
-    version = "1.74.0"
     license = "BSL-1.0"
     topics = ("conan", "boost", "libraries", "cpp")
     # The current python option requires the package to be built locally, to find default Python
