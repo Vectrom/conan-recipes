@@ -26,7 +26,7 @@ jobs:
           conan create . poppler/20.11.0@vectrom/stable -s build_type=Release -o poppler:with_qt=True -o qt:qttools=True 
           conan create . poppler/20.11.0@vectrom/stable -s build_type=Debug -o poppler:with_qt=True -o qt:qttools=True 
       - name: Upload
-        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all
+        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all --force
 
   Lnx:
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
           conan create . poppler/20.11.0@vectrom/stable -s build_type=Release -o poppler:with_qt=True -o qt:qttools=True 
           conan create . poppler/20.11.0@vectrom/stable -s build_type=Debug -o poppler:with_qt=True -o qt:qttools=True 
       - name: Upload
-        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all
+        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all --force
 
   Mac:
     runs-on: macos-latest
@@ -96,4 +96,4 @@ jobs:
           conan create . poppler/20.11.0@vectrom/stable -s build_type=Release -o poppler:with_qt=True -o qt:qttools=True --build missing 
           conan create . poppler/20.11.0@vectrom/stable -s build_type=Debug -o poppler:with_qt=True -o qt:qttools=True --build missing 
       - name: Upload
-        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all
+        run: conan upload poppler/20.11.0@vectrom/stable -r vectrom --all --force
