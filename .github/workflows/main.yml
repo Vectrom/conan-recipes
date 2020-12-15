@@ -23,10 +23,10 @@ jobs:
           conan user -p "$env:ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . -s build_type=Release 
-          conan create . -s build_type=Debug  
+          conan create . boost/stable -s build_type=Release 
+          conan create . boost/stable -s build_type=Debug  
       - name: Upload
-        run: conan upload boost/1.74.0 -r vectrom --all
+        run: conan upload boost/stable -r vectrom --all
 
   Lnx:
     runs-on: ubuntu-latest
@@ -67,10 +67,10 @@ jobs:
           conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . -s build_type=Release  
-          conan create . -s build_type=Debug  
+          conan create . boost/stable -s build_type=Release  
+          conan create . boost/stable -s build_type=Debug  
       - name: Upload
-        run: conan upload boost/1.74.0 -r vectrom --all
+        run: conan upload boost/stable -r vectrom --all
 
   Mac:
     runs-on: macos-latest
@@ -92,7 +92,7 @@ jobs:
           conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . -s build_type=Release  --build missing 
-          conan create . -s build_type=Debug  --build missing 
+          conan create . boost/stable -s build_type=Release  --build missing 
+          conan create . boost/stable -s build_type=Debug  --build missing 
       - name: Upload
-        run: conan upload boost/1.74.0 -r vectrom --all
+        run: conan upload boost/stable -r vectrom --all
