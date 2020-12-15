@@ -20,7 +20,7 @@ jobs:
         env:
           ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}
         run: |
-          python -m pip install conan
+          python -m pip install conan 
           conan remote add vectrom https://artifactory.plociennik.net/artifactory/api/conan/conan --insert
           conan user -p "$env:ARTIFACTORY_API_KEY" -r vectrom github
 
