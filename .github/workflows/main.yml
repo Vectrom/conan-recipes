@@ -28,8 +28,8 @@ jobs:
           conan user -p "$env:ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Release --update
-          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Debug --update
+          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Release
+          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Debug
       - name: Upload
         run: conan upload double-conversion/3.1.5@vectrom/stable -r vectrom --all --force
 
@@ -53,8 +53,8 @@ jobs:
           conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Release --update
-          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Debug --update
+          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Release
+          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Debug
       - name: Upload
         run: conan upload double-conversion/3.1.5@vectrom/stable -r vectrom --all --force
 
@@ -78,7 +78,7 @@ jobs:
           conan user -p "$ARTIFACTORY_API_KEY" -r vectrom github
       - name: Create packages
         run: |
-          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Release --update
-          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Debug --update
+          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Release
+          conan create . double-conversion/3.1.5@vectrom/stable -s build_type=Debug
       - name: Upload
         run: conan upload double-conversion/3.1.5@vectrom/stable -r vectrom --all --force
