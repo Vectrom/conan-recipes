@@ -29,8 +29,8 @@ jobs:
 
       - name: Create packages
         run: |
-          conan create . qt/5.15.1@vectrom/stable -s build_type=Release -o qt:qttools=True --update
-          conan create . qt/5.15.1@vectrom/stable -s build_type=Debug -o qt:qttools=True --update
+          conan create . qt/5.15.1@vectrom/stable -s build_type=Release -o qt:qttools=True
+          conan create . qt/5.15.1@vectrom/stable -s build_type=Debug -o qt:qttools=True
 
       - name: Upload
         run: conan upload qt/5.15.1@vectrom/stable -r vectrom --all --force
@@ -75,8 +75,8 @@ jobs:
 
       - name: Create packages
         run: |
-          conan create . qt/5.15.1@vectrom/stable -s build_type=Release -o qt:qttools=True --update
-          conan create . qt/5.15.1@vectrom/stable -s build_type=Debug -o qt:qttools=True --update
+          conan create . qt/5.15.1@vectrom/stable -s build_type=Release -o qt:qttools=True
+          conan create . qt/5.15.1@vectrom/stable -s build_type=Debug -o qt:qttools=True
 
       - name: Upload
         run: conan upload qt/5.15.1@vectrom/stable -r vectrom --all --force
@@ -102,8 +102,8 @@ jobs:
 
       - name: Create packages
         run: |
-          conan create . qt/5.15.1@vectrom/stable -s build_type=Release -o qt:qttools=True --update
-          conan create . qt/5.15.1@vectrom/stable -s build_type=Debug -o qt:qttools=True --update
+          conan create . qt/5.15.1@vectrom/stable -s build_type=Release -o qt:qttools=True
+          conan create . qt/5.15.1@vectrom/stable -s build_type=Debug -o qt:qttools=True
 
       - name: Upload
         run: conan upload qt/5.15.1@vectrom/stable -r vectrom --all --force
