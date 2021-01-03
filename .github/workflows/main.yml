@@ -31,7 +31,7 @@ jobs:
         run: conan upload libpng/1.6.37@vectrom/stable -r vectrom --all
 
   Lnx:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
